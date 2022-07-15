@@ -22,6 +22,9 @@ public class Homepage extends BasePage{
 
     }
 
+    /*@FindBy(xpath = "//span[.='Task']/span")
+    public WebElement taskButton;*/
 
-
+    @FindBy(xpath = "//div[.='Task has been created']")
+    public WebElement taskButton;
 }
