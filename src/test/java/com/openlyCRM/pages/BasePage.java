@@ -34,6 +34,7 @@ public abstract class BasePage {
     @FindBy(xpath = "//span//span[.='More']")
     public WebElement moreButton;
 
+ OPC-1010_Comment
     //nhlcntrk-common method
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
@@ -70,6 +71,9 @@ public abstract class BasePage {
 
     }
 
+
+    @FindBy(xpath = "(//span[@data-role='item-text'])[10]")
+    public WebElement employeesButton;
 
 
 }

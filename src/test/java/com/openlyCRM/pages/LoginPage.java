@@ -13,13 +13,13 @@ public class LoginPage extends BasePage {
     }
 
     @FindBy(name = "USER_LOGIN")
-    private WebElement username;
+    public WebElement username;
 
     @FindBy(name = "USER_PASSWORD")
-    private WebElement password;
+    public WebElement password;
 
     @FindBy(xpath = "//input[@class='login-btn']")
-    private WebElement loginButton;
+    public WebElement loginButton;
 
     public void loginWithMarketingUser() {
         Driver.getDriver().get(ConfigurationReader.getProperty("openlyCRM.url2"));
@@ -39,6 +39,13 @@ public class LoginPage extends BasePage {
         Driver.getDriver().get(ConfigurationReader.getProperty("openlyCRM.url2"));
         this.username.sendKeys(ConfigurationReader.getProperty("openlyCRM.email1"));
         this.password.sendKeys(ConfigurationReader.getProperty("openlyCRM.password"));
+        this.loginButton.click();
+    }
+
+    public void login(String username,String password){
+        Driver.getDriver().get(ConfigurationReader.getProperty("openlyCRM.url2"));
+        this.username.sendKeys(username);
+        this.password.sendKeys(password);
         this.loginButton.click();
     }
 
