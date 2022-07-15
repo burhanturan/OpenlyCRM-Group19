@@ -8,7 +8,8 @@ Feature: Testing department functionality
   3. Hr user should be able to select a parent department from the department dropdown.
   4.Hr user should be able to select a supervisor from "recent", "company" and "search"
   5.Hr user should be able to close add department pop-up at any time before sending.
-  6.Hr user should be able to edit departments, add child departments, and delete departments after adding the department.
+  6.Hr user should be able to edit departments, add child departments,
+  and delete departments after adding the department.
   7.Hr user should be able to drag and drop the existing department under another department as a subdepartment.
   8. Helpdesk and marketing users can not change company structure.
 
@@ -60,6 +61,7 @@ Feature: Testing department functionality
     And user clicks Add Department button
     And user clicks select from structure link ,search button and search for an employee to click
     Then user should see the employee is selected
+
    ## AC 5
   Scenario: Verify that Hr user should be able to close add department pop-up at any time before sending.
     Given user is on the homepage
@@ -70,9 +72,24 @@ Feature: Testing department functionality
     Then user should be able to close add department pop-up at any time before sending
 
     ## AC 6 -1
-  @burhan
-  Scenario: Hr user should be able to edit departments
+  Scenario: Verify that Hr user should be able to edit departments
     Given user is on the homepage
     When user clicks Employees button
     And user clicks edit button and changes department name "Cydeo"
     Then user should be edit department
+
+  ## AC 6 -2
+  Scenario: Verify that Hr user should be able to add child departments
+    Given user is on the homepage
+    When user clicks Employees button
+    And user clicks add child button
+    And enters department name "Group-19" and clicks and button
+    Then user should be able to add child department
+
+    ## AC 6 -3
+  @burhan
+  Scenario: Verify that Hr user should be able to add child departments
+      Given user is on the homepage
+      When user clicks Employees button
+      And user clicks delete button
+      Then user should be able to delete department

@@ -8,6 +8,7 @@ import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -157,5 +158,40 @@ public class Department_StepDefinitions {
         String actualText = newDepartment.getText();
         assertEquals(expectedDepName, actualText);
     }
+    //--------------------AC  6-2  ------------------------------
 
+    @And("user clicks add child button")
+    public void user_clicks_add_child_button() {
+        BrowserUtils.clickWithJS(companyStructurePage.hr1AddChildButton);
+    }
+
+
+    @Then("user should be able to add child department")
+    public void user_should_be_able_to_add_child_department() {
+        String locator = "//a[.='" + expectedDepName + "']";
+
+        WebElement newDepartment = Driver.getDriver().findElement(By.xpath(locator));
+
+        String actualText = newDepartment.getText();
+        assertEquals(expectedDepName, actualText);
+    }
+
+    //--------------------AC  6-3  ------------------------------
+
+
+    @When("user clicks delete button")
+    public void user_clicks_delete_button() {
+        BrowserUtils.clickWithJS(companyStructurePage.groupDepDeleteButton);
+        Alert alert = Driver.getDriver().switchTo().alert();
+        alert.accept();
+    }
+
+    @Then("user should be able to delete department")
+    public void user_should_be_able_to_delete_department() {
+
+        String locator = "//a[.='" + expectedDepName + "']";
+        boolean elementPresent = companyStructurePage.isElementPresent(By.xpath(locator));
+        assertFalse(elementPresent);
+
+    }
 }

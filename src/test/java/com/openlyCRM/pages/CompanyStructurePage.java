@@ -74,5 +74,11 @@ public class CompanyStructurePage extends BasePage {
     @FindBy(xpath = "//span[.='Save']")
     public WebElement saveButton;
 
+    @FindBy(xpath = "(//div[@class='structure-delete-icon'])[6]")
+    public WebElement groupDepDeleteButton;
+
+    @FindBy(xpath = "(//div[@title='Add child department'])[2]")
+    public WebElement hr1AddChildButton;
+
 
 }
