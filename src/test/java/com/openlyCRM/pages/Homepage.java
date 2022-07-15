@@ -22,19 +22,5 @@ public class Homepage extends BasePage{
 
     }
 
- //OPC-1102-FilterAndSearch
-    /*@FindBy(xpath = "//span[.='Task']/span")
-    public WebElement taskButton;*/
 
-    // OPC-1006_event
-    @FindBy(xpath = "(//span[.='Event'])[2]")
-    public WebElement eventTab;
-
-
-    @FindBy(xpath = "//div[@id='feed-add-buttons-blockblogPostForm']//button[@class='ui-btn ui-btn-lg ui-btn-primary']")
-    public WebElement sendButton;
-
-
-    @FindBy(xpath = "//div[.='Task has been created']")
-    public WebElement taskButton;
 }
