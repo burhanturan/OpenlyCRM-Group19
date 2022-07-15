@@ -29,7 +29,7 @@ Feature: Testing department functionality
     Given user is on the homepage
     When user clicks Employees button
     And user clicks Add Department button
-    And enters department name "Group-19" and clicks and button
+    And enters department name "Group-191" and clicks and button
     Then user should see the department in Company Structure
   ## AC 3
   Scenario: Verify that Hr user should be able to select a parent department from the department dropdown.
@@ -67,7 +67,7 @@ Feature: Testing department functionality
     Given user is on the homepage
     When user clicks Employees button
     And user clicks Add Department button
-    And enters department name "Group-19"
+    And enters department name "Group-192"
     And user clicks close button before send
     Then user should be able to close add department pop-up at any time before sending
 
@@ -83,7 +83,7 @@ Feature: Testing department functionality
     Given user is on the homepage
     When user clicks Employees button
     And user clicks add child button
-    And enters department name "Group-19" and clicks and button
+    And enters department name "Group-193" and clicks and button
     Then user should be able to add child department
 
     ## AC 6 -3
