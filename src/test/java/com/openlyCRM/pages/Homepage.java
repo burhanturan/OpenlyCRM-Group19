@@ -22,6 +22,10 @@ public class Homepage extends BasePage{
 
     }
 
+ //OPC-1102-FilterAndSearch
+    /*@FindBy(xpath = "//span[.='Task']/span")
+    public WebElement taskButton;*/
+
     // OPC-1006_event
     @FindBy(xpath = "(//span[.='Event'])[2]")
     public WebElement eventTab;
@@ -31,4 +35,6 @@ public class Homepage extends BasePage{
     public WebElement sendButton;
 
 
+    @FindBy(xpath = "//div[.='Task has been created']")
+    public WebElement taskButton;
 }
