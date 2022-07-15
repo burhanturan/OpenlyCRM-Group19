@@ -22,6 +22,8 @@ public class Homepage extends BasePage{
 
     }
 
+    @FindBy(xpath = "(//span[.='Event'])[2]")
+    public WebElement eventTab;
 
 
 }
