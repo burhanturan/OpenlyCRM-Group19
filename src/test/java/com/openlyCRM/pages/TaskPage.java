@@ -22,6 +22,7 @@ public class TaskPage {
     @FindBy(xpath = "//div[.='Task has been created']")
     public WebElement taskCreatedPopup;
 
-
+    @FindBy(xpath = "//div[.='Task has been created']")
+    public WebElement taskButton;
 
 }
