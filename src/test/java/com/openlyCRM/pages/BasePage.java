@@ -29,6 +29,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//span//span[.='More']")
     public WebElement moreButton;
 
+    @FindBy(xpath = "(//span[@data-role='item-text'])[10]")
+    public WebElement employeesButton;
 
 
 }
