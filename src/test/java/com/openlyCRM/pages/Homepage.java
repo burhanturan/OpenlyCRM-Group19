@@ -35,6 +35,4 @@ public class Homepage extends BasePage{
     public WebElement sendButton;
 
 
-    @FindBy(xpath = "//div[.='Task has been created']")
-    public WebElement taskButton;
 }
