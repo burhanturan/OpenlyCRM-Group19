@@ -22,6 +22,7 @@ public class Homepage extends BasePage{
 
     }
 
-
+    @FindBy(xpath = "//div[@id='feed-add-buttons-blockblogPostForm']//button[@class='ui-btn ui-btn-lg ui-btn-primary']")
+    public WebElement sendButton;
 
 }
