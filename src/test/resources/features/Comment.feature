@@ -15,6 +15,7 @@ Feature:Feature: Functionality of to interact with employees on the posts.
   Background: user is on the homepage
     Given user is on the homepage
 
+
   @ac1-1
   Scenario: AC1-1 :Verify all users that should be able to make a comment,like or unfollow other employee's posts
     When user clicks comment
