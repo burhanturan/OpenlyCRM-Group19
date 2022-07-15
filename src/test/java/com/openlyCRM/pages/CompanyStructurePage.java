@@ -15,5 +15,11 @@ public class CompanyStructurePage extends BasePage {
     @FindBy(xpath = "//span[@id='pagetitle']")
     public WebElement companyStructureTitle;
 
+    @FindBy(xpath = "//span[.='Add department']")
+    public WebElement addDepartmentButton;
+
+    @FindBy(xpath = "//span[.='Add']")
+    public WebElement addButton;
+
 
 }
