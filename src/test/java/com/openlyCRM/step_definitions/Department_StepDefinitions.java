@@ -5,6 +5,7 @@ import com.openlyCRM.pages.Homepage;
 import com.openlyCRM.pages.LoginPage;
 import com.openlyCRM.utilities.BrowserUtils;
 import com.openlyCRM.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -21,7 +22,7 @@ public class Department_StepDefinitions {
     LoginPage loginPage = new LoginPage();
     CompanyStructurePage companyStructurePage = new CompanyStructurePage();
 
-    //------------------AC2----------------
+    //------------------AC1----------------
 
 
     @When("user enters {string} and {string} and clicks login button")
@@ -79,6 +80,45 @@ public class Department_StepDefinitions {
         String currentSelectedDep = select.getFirstSelectedOption().getText();
         assertNotEquals(currentSelectedDep, firstSelectedDep);
     }
+
+    //-----------------------AC4 1 ----------------------
+
+    @When("user clicks select from structure link and clicks employee as a supervisor")
+    public void user_clicks_select_from_structure_link_and_clicks_employee_as_a_supervisor() {
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        companyStructurePage.selectFromStructure.click();
+        companyStructurePage.employeeAsSupervisor.click();
+    }
+    @Then("user should see the employee is selected")
+    public void user_should_see_the_employee_is_selected() {
+        assertTrue(companyStructurePage.selectedSupervisor.isDisplayed());
+    }
+
+    //-----------------------AC4  2 ----------------------
+
+    @When("user clicks select from structure link ,company button and clicks one of the employee as a supervisor")
+    public void user_clicks_select_from_structure_link_company_button_and_clicks_one_of_the_employee_as_a_supervisor() {
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        companyStructurePage.selectFromStructure.click();
+        companyStructurePage.selectFromCompany.click();
+        companyStructurePage.cyberVet.click();
+        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromCyberVet,10);
+        companyStructurePage.employeeFromCyberVet.click();
+    }
+
+    //-----------------------AC4  3 ----------------------
+
+    @And("user clicks select from structure link ,search button and search for an employee to click")
+    public void user_clicks_select_from_structure_link_search_button_and_search_for_an_employee_to_click() {
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        companyStructurePage.selectFromStructure.click();
+        companyStructurePage.searchBoxForSupervisor.sendKeys("helpdesk");
+        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromSearch,10);
+        companyStructurePage.employeeFromSearch.click();
+    }
+
+
+
 
 
 }

@@ -27,5 +27,30 @@ public class CompanyStructurePage extends BasePage {
     @FindBy(xpath = "//select[@id='IBLOCK_SECTION_ID']")
     public WebElement departmentDropDown;
 
+    @FindBy(xpath = "//a[.='Select from structure']")
+    public WebElement selectFromStructure;
+
+    @FindBy(xpath = "(//div[@class='finder-box-item-text'])[2]")
+    public WebElement employeeAsSupervisor;
+
+    @FindBy(xpath = "//span[@id='uf_head_name']")
+    public WebElement selectedSupervisor;
+
+    //ac 4-1
+    @FindBy(xpath = "//span[.='Company']")
+    public WebElement selectFromCompany;
+
+    @FindBy(xpath = "(//span/div[@class='company-department-arrow'])[1]")
+    public WebElement cyberVet;
+
+    @FindBy(xpath = "(//div[@class='company-department-employee-position'])[3]")
+    public WebElement employeeFromCyberVet;
+
+    @FindBy(xpath = "//input[contains(@id,'_user_input')]")
+    public WebElement searchBoxForSupervisor;
+
+    @FindBy(xpath = "(//div[@class='finder-box-item-text'])[10]")
+    public WebElement employeeFromSearch;
+
 
 }
