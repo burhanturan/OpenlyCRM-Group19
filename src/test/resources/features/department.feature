@@ -12,7 +12,7 @@ Feature: Testing department functionality
   8. Helpdesk and marketing users can not change company structure.
 
   @burhan
-  Scenario Outline:
+  Scenario Outline: Verify that all user types should be able to display company structure.
     When user enters "<username>" and "<password>" and clicks login button
     And user clicks Employees button
     Then user should see Company Structure
@@ -21,3 +21,10 @@ Feature: Testing department functionality
       | helpdesk11@cybertekschool.com  | UserUser |
       | hr11@cybertekschool.com        | UserUser |
       | marketing54@cybertekschool.com | UserUser |
+
+  Scenario: Verify that Hr user should be able to add a department from the company structure.
+    Given user is on the homepage
+    When user clicks Employees button
+    And user clicks Add Department button
+    And enters department name and clicks and button
+    Then user should see the department in Company Structure
