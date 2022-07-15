@@ -16,15 +16,22 @@ Feature: Testing department functionality
     And user clicks Employees button
     Then user should see Company Structure
     Examples:
-  | username                       | password |
-  | helpdesk11@cybertekschool.com  | UserUser |
-  | hr11@cybertekschool.com        | UserUser |
-  | marketing54@cybertekschool.com | UserUser |
+      | username                       | password |
+      | helpdesk11@cybertekschool.com  | UserUser |
+      | hr11@cybertekschool.com        | UserUser |
+      | marketing54@cybertekschool.com | UserUser |
 
-  @burhan
+
   Scenario: Verify that Hr user should be able to add a department from the company structure.
     Given user is on the homepage
     When user clicks Employees button
     And user clicks Add Department button
-    And enters department name and clicks and button
+    And enters department name "Group-19" and clicks and button
     Then user should see the department in Company Structure
+
+  @burhan
+  Scenario: Hr user should be able to select a parent department from the department dropdown.
+    Given user is on the homepage
+    When user clicks Employees button
+    And user clicks Add Department button
+    Then user should be able to select from department dropdown

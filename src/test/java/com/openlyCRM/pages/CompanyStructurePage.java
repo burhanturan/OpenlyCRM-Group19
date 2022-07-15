@@ -21,5 +21,11 @@ public class CompanyStructurePage extends BasePage {
     @FindBy(xpath = "//span[.='Add']")
     public WebElement addButton;
 
+    @FindBy(xpath = "//input[@id='NAME']")
+    public WebElement departmentName;
+
+    @FindBy(xpath = "//select[@id='IBLOCK_SECTION_ID']")
+    public WebElement departmentDropDown;
+
 
 }
