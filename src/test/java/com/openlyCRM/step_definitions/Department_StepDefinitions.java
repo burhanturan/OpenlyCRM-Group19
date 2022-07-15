@@ -31,4 +31,18 @@ public class Department_StepDefinitions {
         String actualTitle = companyStructurePage.companyStructureTitle.getText();
         assertEquals(expectedTitle, actualTitle);
     }
+
+    //------------------AC2----------------
+    @When("user clicks Add Department button")
+    public void user_clicks_add_department_button() {
+
+    }
+    @When("enters department name and clicks and button")
+    public void enters_department_name_and_clicks_and_button() {
+
+    }
+    @Then("user should see the department in Company Structure")
+    public void user_should_see_the_department_in_company_structure() {
+
+    }
 }

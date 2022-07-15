@@ -11,17 +11,17 @@ Feature: Testing department functionality
   7.Hr user should be able to drag and drop the existing department under another department as a subdepartment.
   8. Helpdesk and marketing users can not change company structure.
 
-  @burhan
   Scenario Outline: Verify that all user types should be able to display company structure.
     When user enters "<username>" and "<password>" and clicks login button
     And user clicks Employees button
     Then user should see Company Structure
     Examples:
-      | username                       | password |
-      | helpdesk11@cybertekschool.com  | UserUser |
-      | hr11@cybertekschool.com        | UserUser |
-      | marketing54@cybertekschool.com | UserUser |
+  | username                       | password |
+  | helpdesk11@cybertekschool.com  | UserUser |
+  | hr11@cybertekschool.com        | UserUser |
+  | marketing54@cybertekschool.com | UserUser |
 
+  @burhan
   Scenario: Verify that Hr user should be able to add a department from the company structure.
     Given user is on the homepage
     When user clicks Employees button
