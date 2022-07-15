@@ -1,3 +1,4 @@
+@burhan2
 Feature: Testing department functionality
   As a user, I should be able to use functions on
   Company Structure under Employee menu.
@@ -53,11 +54,18 @@ Feature: Testing department functionality
     Then user should see the employee is selected
 
   ## AC 4-3
-  @burhan
   Scenario: Verify that Hr user should be able to select a supervisor from "search"
     Given user is on the homepage
     When user clicks Employees button
     And user clicks Add Department button
     And user clicks select from structure link ,search button and search for an employee to click
     Then user should see the employee is selected
-
+   ## AC 5
+  @burhan
+  Scenario: Verify that Hr user should be able to close add department pop-up at any time before sending.
+    Given user is on the homepage
+    When user clicks Employees button
+    And user clicks Add Department button
+    And enters department name "Group-19"
+    And user clicks close button before send
+    Then user should be able to close add department pop-up at any time before sending

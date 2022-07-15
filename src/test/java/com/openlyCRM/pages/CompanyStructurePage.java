@@ -2,6 +2,8 @@ package com.openlyCRM.pages;
 
 
 import com.openlyCRM.utilities.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -51,6 +53,20 @@ public class CompanyStructurePage extends BasePage {
 
     @FindBy(xpath = "(//div[@class='finder-box-item-text'])[10]")
     public WebElement employeeFromSearch;
+
+    public boolean isElementPresent(By locatorKey) {
+        try {
+            Driver.getDriver().findElement(locatorKey);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    @FindBy(xpath = "//span[.='Close']")
+    public WebElement closeButton;
+
+
 
 
 }

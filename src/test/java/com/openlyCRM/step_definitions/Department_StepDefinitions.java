@@ -8,7 +8,6 @@ import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -85,10 +84,11 @@ public class Department_StepDefinitions {
 
     @When("user clicks select from structure link and clicks employee as a supervisor")
     public void user_clicks_select_from_structure_link_and_clicks_employee_as_a_supervisor() {
-        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure, 10);
         companyStructurePage.selectFromStructure.click();
         companyStructurePage.employeeAsSupervisor.click();
     }
+
     @Then("user should see the employee is selected")
     public void user_should_see_the_employee_is_selected() {
         assertTrue(companyStructurePage.selectedSupervisor.isDisplayed());
@@ -98,11 +98,11 @@ public class Department_StepDefinitions {
 
     @When("user clicks select from structure link ,company button and clicks one of the employee as a supervisor")
     public void user_clicks_select_from_structure_link_company_button_and_clicks_one_of_the_employee_as_a_supervisor() {
-        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure, 10);
         companyStructurePage.selectFromStructure.click();
         companyStructurePage.selectFromCompany.click();
         companyStructurePage.cyberVet.click();
-        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromCyberVet,10);
+        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromCyberVet, 10);
         companyStructurePage.employeeFromCyberVet.click();
     }
 
@@ -110,14 +110,34 @@ public class Department_StepDefinitions {
 
     @And("user clicks select from structure link ,search button and search for an employee to click")
     public void user_clicks_select_from_structure_link_search_button_and_search_for_an_employee_to_click() {
-        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure,10);
+        BrowserUtils.waitForClickablility(companyStructurePage.selectFromStructure, 10);
         companyStructurePage.selectFromStructure.click();
         companyStructurePage.searchBoxForSupervisor.sendKeys("helpdesk");
-        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromSearch,10);
+        BrowserUtils.waitForClickablility(companyStructurePage.employeeFromSearch, 10);
         companyStructurePage.employeeFromSearch.click();
     }
 
+    // -----------------------AC  5  ---------------------------
 
+    @And("enters department name {string}")
+    public void entersDepartmentName(String depName) {
+        expectedDepName = depName;
+        companyStructurePage.departmentName.sendKeys(depName);
+    }
+
+    @When("user clicks close button before send")
+    public void user_clicks_close_button_before_send() {
+        companyStructurePage.closeButton.click();
+    }
+
+    @Then("user should be able to close add department pop-up at any time before sending")
+    public void user_should_be_able_to_close_add_department_pop_up_at_any_time_before_sending() {
+        String locatorText = "//a[.='" + expectedDepName + "']";
+        boolean resultClosingDepartment = companyStructurePage.isElementPresent(By.xpath(locatorText));
+        assertFalse(resultClosingDepartment);
+    }
+
+    //--------------------AC  6  ------------------------------
 
 
 
