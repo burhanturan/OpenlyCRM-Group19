@@ -6,9 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class CommentStepDefinitions {
-    @Given("user is on the homepage")
-    public void userIsOnTheHomepage() {
-    }
+
 
     @When("user clicks comment")
     public void userClicksComment() {
