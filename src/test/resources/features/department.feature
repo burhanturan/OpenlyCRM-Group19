@@ -61,7 +61,6 @@ Feature: Testing department functionality
     And user clicks select from structure link ,search button and search for an employee to click
     Then user should see the employee is selected
    ## AC 5
-  @burhan
   Scenario: Verify that Hr user should be able to close add department pop-up at any time before sending.
     Given user is on the homepage
     When user clicks Employees button
@@ -69,3 +68,11 @@ Feature: Testing department functionality
     And enters department name "Group-19"
     And user clicks close button before send
     Then user should be able to close add department pop-up at any time before sending
+
+    ## AC 6 -1
+  @burhan
+  Scenario: Hr user should be able to edit departments
+    Given user is on the homepage
+    When user clicks Employees button
+    And user clicks edit button and changes department name "Cydeo"
+    Then user should be edit department

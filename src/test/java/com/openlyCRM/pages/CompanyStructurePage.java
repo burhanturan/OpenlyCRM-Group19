@@ -66,7 +66,13 @@ public class CompanyStructurePage extends BasePage {
     @FindBy(xpath = "//span[.='Close']")
     public WebElement closeButton;
 
+    //-----------AC 6 -------------------
 
+    @FindBy(xpath = "(//div[@class='structure-edit-icon'])[2]")
+    public WebElement hr1EditButton;
+
+    @FindBy(xpath = "//span[.='Save']")
+    public WebElement saveButton;
 
 
 }

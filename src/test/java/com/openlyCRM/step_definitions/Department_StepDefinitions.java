@@ -137,8 +137,25 @@ public class Department_StepDefinitions {
         assertFalse(resultClosingDepartment);
     }
 
-    //--------------------AC  6  ------------------------------
+    //--------------------AC  6-1  ------------------------------
 
+    @When("user clicks edit button and changes department name {string}")
+    public void user_clicks_edit_button_and_changes_department_name(String depName) {
+        expectedDepName = depName;
+        BrowserUtils.clickWithJS(companyStructurePage.hr1EditButton);
+        companyStructurePage.departmentName.clear();
+        companyStructurePage.departmentName.sendKeys(depName);
+        companyStructurePage.saveButton.click();
+    }
 
+    @Then("user should be edit department")
+    public void user_should_be_edit_department() {
+        String locator = "//a[.='" + expectedDepName + "']";
+
+        WebElement newDepartment = Driver.getDriver().findElement(By.xpath(locator));
+
+        String actualText = newDepartment.getText();
+        assertEquals(expectedDepName, actualText);
+    }
 
 }
