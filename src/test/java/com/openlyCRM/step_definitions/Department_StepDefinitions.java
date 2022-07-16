@@ -14,6 +14,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Department_StepDefinitions {
@@ -149,7 +151,7 @@ public class Department_StepDefinitions {
         companyStructurePage.saveButton.click();
     }
 
-    @Then("user should be edit department")
+    @Then("user should be able to edit department")
     public void user_should_be_edit_department() {
         String locator = "//a[.='" + expectedDepName + "']";
 
@@ -194,4 +196,33 @@ public class Department_StepDefinitions {
         assertFalse(elementPresent);
 
     }
+    //--------------------AC 7 ------------------------------
+
+    @When("user drags and drops a department under another department as a subdepartment")
+    public void user_drags_and_drops_a_department_under_another_department_as_a_subdepartment() {
+        companyStructurePage.dragAndDrop(companyStructurePage.subDepartment, companyStructurePage.newParentDepartment);
+    }
+
+    @Then("user should be able to drags and drops a department under another department as a subdepartment")
+    public void user_should_be_able_to_drags_and_drops_a_department_under_another_department_as_a_subdepartment() {
+        assertTrue(companyStructurePage.childDepartment.isDisplayed());
+    }
+
+    //--------------------AC 8 -----------------------------
+
+    @Then("user should not be able to see edit,delete and add button")
+    public void user_should_not_be_able_to_see_edit_delete_and_add_button() {
+        List<WebElement> allEditButton = companyStructurePage.allEditButtons;
+        for (WebElement webElement : allEditButton) {
+            assertFalse(webElement.isDisplayed());
+        }
+    }
+
+    @Then("user should not be able to drag and drop departments as a subdepartment")
+    public void user_should_not_be_able_to_drag_and_drop_departments_as_a_subdepartment() {
+        companyStructurePage.dragAndDrop(companyStructurePage.subDepartment, companyStructurePage.newParentDepartment);
+        boolean elementPresent = companyStructurePage.childDepList.size() > 1;
+        assertFalse(elementPresent);
+    }
+
 }
