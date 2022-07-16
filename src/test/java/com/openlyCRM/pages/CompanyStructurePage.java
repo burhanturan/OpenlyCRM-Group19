@@ -5,8 +5,11 @@ import com.openlyCRM.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class CompanyStructurePage extends BasePage {
 
@@ -79,6 +82,29 @@ public class CompanyStructurePage extends BasePage {
 
     @FindBy(xpath = "(//div[@title='Add child department'])[2]")
     public WebElement hr1AddChildButton;
+
+
+    //---------------------  AC 7  -------------------
+    @FindBy(xpath = "//table[contains(@id,'bx_str_children')]")
+    public WebElement childDepartment;
+
+    @FindBy(xpath = "(//div[@class='structure-dept-title-text'])[2]")
+    public WebElement subDepartment;
+
+    @FindBy(xpath = "(//div[@class='structure-dept-title-text'])[3]")
+    public WebElement newParentDepartment;
+
+    public void dragAndDrop(WebElement dragPoint,WebElement dropPoint){
+        Actions actions = new Actions(Driver.getDriver());
+        actions.dragAndDrop(dragPoint,dropPoint).perform();
+    }
+
+    //--------------------- AC 8 --------------------------
+    @FindBy(xpath = "(//div[@class='structure-icon-box'])[1]/div")
+    public List<WebElement> allEditButtons;
+
+    @FindBy(xpath = "//table[contains(@id,'bx_str_children')]")
+    public List<WebElement> childDepList;
 
 
 }
