@@ -5,17 +5,16 @@ import com.openlyCRM.utilities.BrowserUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 public class Event_StepDefinitions {
 
@@ -56,7 +55,7 @@ public class Event_StepDefinitions {
 //    }
 
 
-
+//  AC1
     @Given("user clicks {string} tab")
     public void user_clicks_tab(String eventTabButton) {
         homepage.clickTabMenu(eventTabButton);
@@ -102,20 +101,21 @@ public class Event_StepDefinitions {
         homepage.eventEndTimeBox.clear();
         homepage.eventEndTimeBox.sendKeys(eventEndTime);
     }
-    @Then("verify expected time to event start \\(minutes) {string}, {string}, {string}")
-    public void verify_expected_time_to_event_start_minutes(String startDate, String startTime, String expected) {
-        int actualTimeToEventStartInMinutes = (int) ChronoUnit.MINUTES.between(dateToday, dateToday.plusDays(Long.parseLong(startDate)))
-                + (int) ChronoUnit.MINUTES.between(timeNow, LocalDateTime.parse(startTime, timeFormatter));
-        int expectedTimeToEventStartInMinutes = Integer.parseInt(expected);
-        Assert.assertEquals(actualTimeToEventStartInMinutes, expectedTimeToEventStartInMinutes);
-    }
-    @Then("verify expected time to event end \\(minutes) {string}, {string}, {string}")
-    public void verify_expected_time_to_event_end_minutes(String endDate, String endTime, String expected) {
-        int actualTimeToEventEndInMinutes = (int) ChronoUnit.MINUTES.between(dateToday, dateToday.plusDays(Long.parseLong(endDate)))
-                + (int) ChronoUnit.MINUTES.between(timeNow, LocalDateTime.parse(endTime, timeFormatter));
-        int expectedTimeToEventEndInMinutes = Integer.parseInt(expected);
-        Assert.assertEquals(actualTimeToEventEndInMinutes, expectedTimeToEventEndInMinutes);
-    }
+//    @Then("verify expected time to event start \\(minutes) {string}, {string}, {string}")
+//    public void verify_expected_time_to_event_start_minutes(String startDate, String startTime, String expected) {
+//        int actualTimeToEventStartInMinutes = (int) ChronoUnit.MINUTES.between(dateToday, dateToday.plusDays(Long.parseLong(startDate)))
+//                + (int) ChronoUnit.MINUTES.between(timeNow, LocalDateTime.parse(startTime, timeFormatter));
+//        int expectedTimeToEventStartInMinutes = Integer.parseInt(expected);
+//        Assert.assertEquals(actualTimeToEventStartInMinutes, expectedTimeToEventStartInMinutes);
+//    }
+//    @Then("verify expected time to event end \\(minutes) {string}, {string}, {string}")
+//    public void verify_expected_time_to_event_end_minutes(String endDate, String endTime, String expected) {
+//        int actualTimeToEventEndInMinutes = (int) ChronoUnit.MINUTES.between(dateToday, dateToday.plusDays(Long.parseLong(endDate)))
+//                + (int) ChronoUnit.MINUTES.between(timeNow, LocalDateTime.parse(endTime, timeFormatter));
+//        int expectedTimeToEventEndInMinutes = Integer.parseInt(expected);
+//        Assert.assertEquals(actualTimeToEventEndInMinutes, expectedTimeToEventEndInMinutes);
+//    }
+
 
 
     @When("user clicks All Day check box")
@@ -170,4 +170,72 @@ public class Event_StepDefinitions {
     }
 
 
+//  AC2
+    @Given("Event set reminder checkbox is checked")
+    public void event_set_reminder_checkbox_is_checked() {
+        BrowserUtils.sleep(1);
+        Assert.assertTrue(homepage.eventSetReminderCheckbox.isDisplayed());
+    }
+    @When("user clicks Event set reminder checkbox")
+    public void user_clicks_event_set_reminder_checkbox() {
+//        BrowserUtils.clickWithJS(homepage.eventSetReminderCheckbox);
+        homepage.eventSetReminderCheckbox.click();
+    }
+    @Then("user should see set reminder checkbox is unchecked")
+    public void user_should_see_set_reminder_checkbox_is_unchecked() {
+        Assert.assertFalse(homepage.eventSetReminderCheckbox.isSelected());
+    }
+    @Then("user should see set reminder checkbox is checked")
+    public void user_should_see_set_reminder_checkbox_is_checked() {
+        BrowserUtils.waitForPageToLoad(1);
+        Assert.assertTrue(homepage.eventSetReminderCheckbox.isSelected());
+    }
+    @Given("user should see Event reminder count {string} by default")
+    public void user_should_see_event_reminder_count_by_default(String string) {
+        BrowserUtils.waitForPageToLoad(1);
+        Assert.assertEquals(homepage.eventReminderCount.getAttribute("value"), string);
+    }
+    @When("user enters {string} into Event reminder count input box")
+    public void user_enters_into_event_reminder_count_input_box(String string) {
+        homepage.eventReminderCount.clear();
+        homepage.eventReminderCount.sendKeys(string);
+    }
+    @Then("user should see {string} in the Event reminder count input box")
+    public void user_should_see_in_the_event_reminder_count_input_box(String string) {
+        Assert.assertEquals(homepage.eventReminderCount.getAttribute("value"), string);
+    }
+
+    @Given("user should see Event reminder type {string} by default")
+    public void userShouldSeeEventReminderTypeByDefault(String string) {
+        Select select = new Select(homepage.eventReminderTypeDropdown);
+        String actualEventReminderType = select.getFirstSelectedOption().getText();
+        Assert.assertEquals(string, actualEventReminderType);
+    }
+    @When("user clicks Event remind type dropdown menu")
+    public void user_clicks_event_remind_type_dropdown_menu() {
+        homepage.eventReminderTypeDropdown.click();
+    }
+    @When("user should see below info in event remind type dropdown")
+    public void user_should_see_below_info_in_event_remind_type_dropdown(List<String> expectedRemindTypes) {
+        List<String> actualRemindTypes =BrowserUtils.dropdownOptionsAsString(homepage.eventReminderTypeDropdown);
+        Assert.assertEquals(actualRemindTypes, expectedRemindTypes);
+    }
+
+    @When("user selects {string} in the event remind type dropdown menu")
+    public void user_selects_in_the_event_remind_type_dropdown_menu(String string) {
+        BrowserUtils.selectFromDropdown(homepage.eventReminderTypeDropdown, string);
+    }
+    @Then("user should see the {string} in the event remind type box")
+    public void user_should_see_the_in_the_event_remind_type_box(String string) {
+        Select select = new Select(homepage.eventReminderTypeDropdown);
+        Assert.assertEquals(string, select.getFirstSelectedOption().getText());
+    }
+
+    @Then("user should see Event start date & time, end date & time {string}, {string}, {string}, {string}")
+    public void userShouldSeeEventStartDateTimeEndDateTime(String arg0, String arg1, String arg2, String arg3) {
+        Assert.assertEquals(LocalDate.now().plusDays(Integer.parseInt(arg0)).format(dateFormatter), homepage.eventStartDateBox.getAttribute("value"));
+        Assert.assertEquals(timeNow.plusHours(Integer.parseInt(arg1)).format(timeFormatter), homepage.eventStartTimeBox.getAttribute("value"));
+        Assert.assertEquals(LocalDate.now().plusDays(Integer.parseInt(arg2)).format(dateFormatter), homepage.eventEndDateBox.getAttribute("value"));
+        Assert.assertEquals(timeNow.plusHours(Integer.parseInt(arg3)).format(timeFormatter), homepage.eventEndTimeBox.getAttribute("value"));
+    }
 }

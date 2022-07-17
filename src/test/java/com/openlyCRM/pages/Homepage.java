@@ -49,6 +49,15 @@ public class Homepage extends BasePage{
 
     @FindBy(name = "TZ_TO")
     public WebElement timeZoneToBox;
+
+    @FindBy(name = "EVENT_REMIND")
+    public WebElement eventSetReminderCheckbox;
+
+    @FindBy(name = "EVENT_REMIND_COUNT")
+    public WebElement eventReminderCount;
+
+    @FindBy(name = "EVENT_REMIND_TYPE")
+    public WebElement eventReminderTypeDropdown;
     // Event page locators
 
 
