@@ -12,7 +12,7 @@ public class Login_StepDefinitions {
 
     @Given("user is on the homepage")
     public void user_is_on_the_homepage() {
-        loginPage.loginWithHelpDeskUser();
+        loginPage.loginWithHRUser();
     }
 
 
