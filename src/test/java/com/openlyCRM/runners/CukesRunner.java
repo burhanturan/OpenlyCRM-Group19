@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
         dryRun = false,
         publish = true,
 
-        tags = "@wipIrfan"
-
+        tags = ""
 
 
 )

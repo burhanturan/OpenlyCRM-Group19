@@ -75,4 +75,33 @@ public class MessageSectionStepDefinition extends BasePage {
             String expectedUrl ="https://login.openlycrm.com/stream/?login=yes";
             String actualUrl = Driver.getDriver().getCurrentUrl();
     }
+
+    @When("user clicks on link button")
+    public void userClicksOnLinkButton() {
+            loginPage.messageButton.click();
+            messageSectionPage.linkButton.click();
+            
+    }
+
+    @When("user types {string} into text input box")
+    public void userTypesIntoTextInputBox(String arg0) {
+
+            messageSectionPage.textInputBox.sendKeys(arg0);
+    }
+
+    @And("user types {string} into link inputbox and clicks save button and then clicks send button")
+    public void userTypesIntoLinkInputboxAndClicksSaveButtonAndThenClicksSendButton(String arg0) {
+
+            messageSectionPage.linkInputBox.sendKeys(arg0);
+            messageSectionPage.linkSaveButton.click();
+            messageSectionPage.sendButton.click();
+
+    }
+
+
+    @Then("user should see verify google link")
+    public void userShouldSeeVerifyGoogleLink() {
+
+            BrowserUtils.verifyElementDisplayed(messageSectionPage.googleVerify);
+    }
 }
