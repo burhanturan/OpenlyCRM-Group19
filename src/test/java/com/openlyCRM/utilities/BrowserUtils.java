@@ -97,6 +97,17 @@ for given duration
 
     }
 
+    /** made by Irfan
+     * This method will accept a dropdown WebElement and a dropdown option by visible text,
+     * and selects the given option
+     * @param dropdownElement WebElement
+     * @param optionByVisibleText String
+     */
+    public static void selectFromDropdown(WebElement dropdownElement, String optionByVisibleText){
+        Select select = new Select(dropdownElement);
+        select.selectByVisibleText(optionByVisibleText);
+    }
+
 
     /**
      * This method will accept a group radio buttons as a List of WebElement.

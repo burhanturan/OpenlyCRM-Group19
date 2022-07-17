@@ -22,5 +22,34 @@ public class Homepage extends BasePage{
 
     }
 
+    // Event page locators
+    @FindBy(name = "DATE_FROM")
+    public WebElement eventStartDateBox;
+
+    @FindBy(name = "TIME_FROM_")
+    public WebElement eventStartTimeBox;
+
+    @FindBy(name = "DATE_TO")
+    public WebElement eventEndDateBox;
+
+    @FindBy(name = "TIME_TO_")
+    public WebElement eventEndTimeBox;
+
+    @FindBy(id = "blog-submit-button-save")
+    public WebElement sendButton;
+
+    @FindBy(name = "EVENT_FULL_DAY")
+    public WebElement eventAllDayCheckBox;
+
+    @FindBy(xpath = "//span[.='Specify time zone']")
+    public WebElement specifyTimeZoneLink;
+
+    @FindBy(name = "TZ_FROM")
+    public WebElement timeZoneFromBox;
+
+    @FindBy(name = "TZ_TO")
+    public WebElement timeZoneToBox;
+    // Event page locators
+
 
 }
