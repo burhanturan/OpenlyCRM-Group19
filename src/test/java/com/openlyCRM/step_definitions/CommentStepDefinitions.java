@@ -1,15 +1,19 @@
 package com.openlyCRM.step_definitions;
 
+import com.openlyCRM.pages.BasePage;
+import com.openlyCRM.pages.CommentPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class CommentStepDefinitions {
+public class CommentStepDefinitions extends BasePage {
 
+    CommentPage commentPage=new CommentPage();
 
     @When("user clicks comment")
     public void userClicksComment() {
+
     }
 
     @And("user types in comment body")

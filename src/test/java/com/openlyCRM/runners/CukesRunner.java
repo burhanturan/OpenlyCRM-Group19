@@ -17,7 +17,10 @@ import org.junit.runner.RunWith;
         glue = "com/openlyCRM/step_definitions",
         dryRun = false,
         publish = true,
-        tags = "@wipIrfan"
+
+        tags = ""
+
+
 
 )
 
