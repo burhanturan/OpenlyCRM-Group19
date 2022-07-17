@@ -24,6 +24,22 @@ public class MessageSectionPage {
     @FindBy(xpath = "//button[@class='ui-btn ui-btn-lg ui-btn-primary']")
     public WebElement sendButton;
 
+    @FindBy(xpath = "//span[@title='Link']/i")
+    public WebElement linkButton;
+
+    @FindBy(xpath = "//input[@id='linkidPostFormLHE_blogPostForm-text']")
+    public WebElement textInputBox;
+
+    @FindBy(xpath = "//input[@id='linkidPostFormLHE_blogPostForm-href']")
+    public WebElement linkInputBox;
+
+    @FindBy(xpath = "//input[@class='adm-btn-save']")
+    public WebElement linkSaveButton;
+
+    @FindBy(xpath = "//a[@href='https://www.google.com']")
+    public WebElement googleVerify;
+
+
 
 }
 
