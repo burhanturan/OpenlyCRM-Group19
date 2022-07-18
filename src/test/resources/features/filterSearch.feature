@@ -13,6 +13,18 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       | WORKFLOWS     |
       | ANNOUNCEMENTS |
       | MY ACTIVITY   |
-      |FAVORITES      |
-      |WORK           |
+      | FAVORITES     |
+      | WORK          |
 
+@byz
+    Scenario: User should be able to add and remove fields.
+      When user clicks add file button
+      And user should be see the fields
+        | Data      |
+        | Type      |
+        | Author    |
+        | To        |
+        | Favorites |
+        | Tag       |
+        | Extranet  |
+      Then user should be able to add and remove fields
