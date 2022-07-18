@@ -91,7 +91,13 @@ public class Homepage extends BasePage{
     public WebElement eventSendButton;
 
     @FindBy(xpath = "(//a[contains(@id, 'feed-event-view-link-livefeed')])[1]")
-    public WebElement activityStreamEventFeed;
+    public WebElement activityStreamLastEventFeed;
+
+    @FindBy(xpath = "(//div[@class='feed-time'])[1]")
+    public WebElement activityStreamLastFeedEventTime;
+
+    @FindBy(xpath = "//button[@id='blog-submit-button-cancel']")
+    public WebElement cancelButton;
     // Event page locators
 
 

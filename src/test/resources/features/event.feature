@@ -118,9 +118,21 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
 
 
 #  AC5
-  Scenario: User should be able to send event by filling the mandatory fields
-    When user enter Event name "Cydeo Meeting 1" in the Event name input box
-    And user clicks on the Event Send button
-    Then user should see the created event with name "Cydeo Meeting 1" in the Activity Stream
 
+  Scenario: User should NOT be able to send event without filling the mandatory field - Event name
+    When Event name input box is empty
+    Then Verify that Event Send button is NOT clickable
+
+
+  Scenario: User should be able to send event by filling the mandatory fields
+    When user enters Event name "Cydeo Meeting 1" in the Event name input box
+    And user clicks on the Event Send button
+    Then user should see the created event with name "Cydeo Meeting 1" in the Activity Stream at the current time
+
+
+
+#  AC6
+  Scenario: User should be able to cancel sending event at any time before sending
+    When user clicks Cancel button
+    Then user should be able to see homepage
 

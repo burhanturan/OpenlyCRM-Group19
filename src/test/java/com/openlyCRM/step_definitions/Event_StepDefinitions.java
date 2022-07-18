@@ -174,7 +174,7 @@ public class Event_StepDefinitions {
 //  AC2
     @Given("Event set reminder checkbox is checked")
     public void event_set_reminder_checkbox_is_checked() {
-        BrowserUtils.sleep(1);
+        BrowserUtils.waitForVisibility(homepage.eventSetReminderCheckbox,3);
         Assert.assertTrue(homepage.eventSetReminderCheckbox.isDisplayed());
     }
     @When("user clicks Event set reminder checkbox")
@@ -328,20 +328,39 @@ public class Event_StepDefinitions {
     }
 
 //  AC5
-    @When("user enter Event name {string} in the Event name input box")
-    public void user_enter_event_name_in_the_event_name_input_box(String string) {
+    @When("user enters Event name {string} in the Event name input box")
+    public void user_enters_event_name_in_the_event_name_input_box(String string) {
         homepage.eventNameInputBox.sendKeys(string);
     }
     @When("user clicks on the Event Send button")
     public void user_clicks_on_the_event_send_button() {
         homepage.eventSendButton.click();
     }
-    @Then("user should see the created event with name {string} in the Activity Stream")
-    public void user_should_see_the_created_event_with_name_in_the_activity_stream(String expectedEventName) {
+    @Then("user should see the created event with name {string} in the Activity Stream at the current time")
+    public void user_should_see_the_created_event_with_name_in_the_activity_stream_at_the_current_time(String expectedEventName) {
         BrowserUtils.waitForPageToLoad(2);
-        String actualEventName = homepage.activityStreamEventFeed.getAttribute("textContent");
+        String actualEventName = homepage.activityStreamLastEventFeed.getAttribute("textContent");
         Assert.assertEquals(expectedEventName, actualEventName);
+
+        String actualEventTime = homepage.activityStreamLastFeedEventTime.getText();
+        String expectedEventTime = timeNow.format(timeFormatter);
+        Assert.assertTrue(actualEventTime.contains("today") && actualEventTime.contains(expectedEventTime));
     }
 
+
+    //  AC6
+    @When("Event name input box is empty")
+    public void event_name_input_box_is_empty() {
+        homepage.eventNameInputBox.clear();
+    }
+    @Then("Verify that Event Send button is NOT clickable")
+    public void verify_that_event_send_button_is_not_clickable() {
+        Assert.assertFalse(homepage.eventSendButton.isEnabled());
+    }
+
+    @When("user clicks Cancel button")
+    public void user_clicks_cancel_button() {
+        homepage.cancelButton.click();
+    }
 
 }
