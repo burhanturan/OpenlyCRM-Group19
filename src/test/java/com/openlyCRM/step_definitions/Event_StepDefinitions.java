@@ -327,8 +327,21 @@ public class Event_StepDefinitions {
         }
     }
 
-
-
+//  AC5
+    @When("user enter Event name {string} in the Event name input box")
+    public void user_enter_event_name_in_the_event_name_input_box(String string) {
+        homepage.eventNameInputBox.sendKeys(string);
+    }
+    @When("user clicks on the Event Send button")
+    public void user_clicks_on_the_event_send_button() {
+        homepage.eventSendButton.click();
+    }
+    @Then("user should see the created event with name {string} in the Activity Stream")
+    public void user_should_see_the_created_event_with_name_in_the_activity_stream(String expectedEventName) {
+        BrowserUtils.waitForPageToLoad(2);
+        String actualEventName = homepage.activityStreamEventFeed.getAttribute("textContent");
+        Assert.assertEquals(expectedEventName, actualEventName);
+    }
 
 
 }

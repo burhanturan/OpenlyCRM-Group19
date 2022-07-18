@@ -83,6 +83,15 @@ public class Homepage extends BasePage{
 
     @FindBy(xpath = "//div[@class='bx-finder-company-department-employee-name']")
     public List<WebElement> contacts;
+
+    @FindBy(name = "EVENT_NAME")
+    public WebElement eventNameInputBox;
+
+    @FindBy(xpath = "(//button[.='Send'])[3]")
+    public WebElement eventSendButton;
+
+    @FindBy(xpath = "(//a[contains(@id, 'feed-event-view-link-livefeed')])[1]")
+    public WebElement activityStreamEventFeed;
     // Event page locators
 
 
