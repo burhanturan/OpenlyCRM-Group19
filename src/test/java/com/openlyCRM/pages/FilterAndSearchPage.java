@@ -8,6 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class FilterAndSearchPage {
 public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
 
+    //                     BEYZA
+
+    //-----------------------------| 1 | ---------------------------------
+
     @FindBy(xpath = "//input[@class='main-ui-filter-search-filter']")
     public WebElement filterAndSearchButton;
 
@@ -20,7 +24,7 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
     @FindBy(xpath = "//span[@class='popup-window-button']")
     public WebElement fsContinue;
 
-    //----------------//----------------//----------------//-------------
+    //----------------//----------------| 2 |----------------//-------------
 
     @FindBy(xpath = "//span[@class='main-ui-filter-field-add-item']")
     public WebElement fsFieldsClick;
@@ -66,6 +70,26 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
 
     @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[7]")
     public WebElement afterClickExtranet;
+
+    //----------------------------| 3 | --------------------------------
+
+    @FindBy(xpath = "(//span[@class='main-ui-delete main-ui-filter-field-delete main-ui-item-icon'])[2]")
+    public WebElement clickHideItem;
+
+    @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
+    public  WebElement restoreDefaultFields;
+
+    @FindBy(xpath = "//span[@class='main-ui-select-name']")
+    public WebElement dateLine;
+
+    @FindBy(xpath = "//span[.='Any date']")
+    public WebElement anyDateClick;
+
+    //---------------------------- | 4 |---------------------------------
+
+
+
+
 
 
 
