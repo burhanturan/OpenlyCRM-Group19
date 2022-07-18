@@ -1,7 +1,7 @@
 @wipIrfan
 Feature: Creating events, by clicking on Event tab, under Activity Stream
 
-#  #OPC-1006
+#  OPC-1006
 #  US04: As a user, I should be able to create events by clicking on Event tab under Activity Stream.
 
 #  AC1. User should be able to add Event start and ending date and time, select "All day" and specify the time zone.
@@ -12,18 +12,20 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
 #  AC6. User should be able to cancel sending event at any time before sending.
 
 
+# OPC-1086 Pre-condition
   Background: User is on the homepage
     Given user is on the homepage
     Given user clicks "Event" tab
 
 
   # AC1
+  # OPC-1085
   Scenario: Verify today's date is default as Event start date and end date
-
     Then user should see today's date in the event start date box
     Then user should see today's date in the event end date box
 
-  Scenario Outline: User should be able to add Event start and ending date and time, select "All day" and specify the time zone
+  # OPC-1087
+  Scenario Outline: User should be able to add Event start and ending date and time
     When user enters Event start date "<Event start date>"
     And user enters Event start time "<Event start time>"
     And user enters Event end date "<Event end date>"
@@ -37,13 +39,15 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
       | Event start date | Event start time | Event end date | Event end time |
       | 1                | 1                | 1              | 2              |
 
-  Scenario:
+  # OPC-1116
+  Scenario: User should be able to select "All day" and specify the time zone
     When user clicks All Day check box
     Then user should see the All Day check box is selected
     When user unclicks All Day check box
     Then user should see the All Day check box is NOT selected
 
-  Scenario Outline:
+  # OPC-1117
+  Scenario Outline: User should be able to specify Time Zone
     When user clicks Specify Time Zone link
     And user clicks Time Zone From dropdown menu
     And user should be able to select Time Zone From "<time zone from>"
@@ -60,9 +64,9 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
 #       425 time zone options available in a dropbox
 
 
-
-  #  AC2
-  Scenario: User should be able to set reminder.
+  # AC2
+  # OPC-1118
+  Scenario: User should be able to set reminder
 
     Given Event set reminder checkbox is checked
     When user clicks Event set reminder checkbox
@@ -85,8 +89,8 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
     Then user should see the "minutes" in the event remind type box
 
 
-
-    #  AC3
+  # AC3
+  # OPC-1119
   Scenario: User should be able to select the event location from the dropdown
     Given User should see select meeting room as placeholder in the Event location dropdown input box
     When user clicks Event location dropdown
@@ -99,7 +103,8 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
     Then user should see the expected Event location "Central Meeting Room"
 
 
-    #  AC4
+  # AC4
+  # OPC-1120
   Scenario: User should be able to add members by selecting contacts individually or adding groups and departments
     When user clicks Members input box
     And user clicks Employees And Departments link
@@ -116,22 +121,21 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
       | helpdesk11@cybertekschool.com  |
 
 
-
-#  AC5
-
+  # AC5
+  # OPC-1121
   Scenario: User should NOT be able to send event without filling the mandatory field - Event name
     When Event name input box is empty
     Then Verify that Event Send button is NOT clickable
 
-
+  # OPC-1122
   Scenario: User should be able to send event by filling the mandatory fields
     When user enters Event name "Cydeo Meeting 1" in the Event name input box
     And user clicks on the Event Send button
     Then user should see the created event with name "Cydeo Meeting 1" in the Activity Stream at the current time
 
 
-
-#  AC6
+  # AC6
+  # OPC-1123
   Scenario: User should be able to cancel sending event at any time before sending
     When user clicks Cancel button
     Then user should be able to see homepage
