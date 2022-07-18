@@ -9,11 +9,12 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.yaml.snakeyaml.introspector.BeanAccess;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event_StepDefinitions {
@@ -238,4 +239,96 @@ public class Event_StepDefinitions {
         Assert.assertEquals(LocalDate.now().plusDays(Integer.parseInt(arg2)).format(dateFormatter), homepage.eventEndDateBox.getAttribute("value"));
         Assert.assertEquals(timeNow.plusHours(Integer.parseInt(arg3)).format(timeFormatter), homepage.eventEndTimeBox.getAttribute("value"));
     }
+
+
+//    AC3
+
+    @Given("User should see select meeting room as placeholder in the Event location dropdown input box")
+    public void user_should_see_select_meeting_room_as_placeholder_in_the_event_location_dropdown_input_box() {
+        BrowserUtils.waitForVisibility(homepage.eventLocationDropdown, 2);
+        String  expectedPlaceholder = "select meeting room";
+        String actualPlaceholder = homepage.eventLocationDropdown.getAttribute("value");
+        Assert.assertEquals(expectedPlaceholder, actualPlaceholder);
+    }
+    @When("user clicks Event location dropdown")
+    public void user_clicks_event_location_dropdown() {
+        BrowserUtils.clickWithJS(homepage.eventLocationDropdown);
+    }
+    @Then("user should see below info in Event location dropdown")
+    public void user_should_see_below_info_in_event_location_dropdown(List<String> expectedLocations) {
+        List<WebElement> actualLocations = homepage.eventLocationDropdownOptions;
+        List<String> actualLocationsString = new ArrayList<>();
+        for (WebElement each : actualLocations) {
+            actualLocationsString.add(each.getText());
+        }
+        Assert.assertEquals(expectedLocations, actualLocationsString);
+    }
+    @Then("user selects {string} in the Event location dropdown")
+    public void user_selects_in_the_event_location_dropdown(String string) {
+        List<WebElement> actualLocations = homepage.eventLocationDropdownOptions;
+        for (WebElement each : actualLocations) {
+            if (each.getText().equals(string)){
+                each.click();
+            }
+        }
+    }
+    @Then("user should see the expected Event location {string}")
+    public void user_should_see_the_expected_event_location(String string) {
+        Assert.assertEquals(homepage.eventLocationDropdown.getAttribute("value"), string);
+    }
+
+
+//  AC4
+    @When("user clicks Members input box")
+    public void user_clicks_members_input_box() {
+        homepage.membersInputBox.click();
+    }
+    @When("user clicks Employees And Departments link")
+    public void user_clicks_employees_and_departments_link() {
+        homepage.employeesAndDepartments.click();
+    }
+    @When("user clicks {string} department")
+    public void user_clicks_department(String string) {
+        List<WebElement> HR_Departments = homepage.HR_Departments;
+        for (WebElement each : HR_Departments) {
+            if(each.getText().equals(string)){
+                each.click();
+            }
+        }
+    }
+    @When("user clicks All department and subdepartment employees checkbox under {string}")
+    public void user_clicks_All_department_and_subdepartment_employees_checkbox_under(String string) {
+        List<WebElement> allDepartmentsCheckboxes = homepage.allDepartmentsCheckboxesUnderHRs;
+        for (WebElement each : allDepartmentsCheckboxes) {
+            if(each.getAttribute("Rel").contains(string)){
+                each.click();
+            }
+        }
+    }
+    @Then("user selects following contacts")
+    public void user_selects_following_contacts(List<String> contactsToSelect) {
+        List<WebElement> contacts = homepage.contacts;
+        for (WebElement each : contacts) {
+            for (String contactToSelect : contactsToSelect) {
+                if (each.getAttribute("textContent").equals(contactToSelect)){
+                    each.click();
+                }
+            }
+        }
+    }
+//    Running process is waiting about 10 seconds after selecting contacts!
+//    It waits even when I deleted the following assertion..
+//    Try to find out the reason and a faster solution.
+
+    @Then("user should see the selected departments and contacts in the Members input box")
+    public void user_should_see_the_selected_departments_and_contacts_in_the_members_input_box(List<String> expectedContacts) {
+        for (String each : expectedContacts) {
+            Assert.assertTrue(homepage.membersInputBox.getAttribute("textContent").contains(each));
+        }
+    }
+
+
+
+
+
 }
