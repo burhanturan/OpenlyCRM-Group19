@@ -109,4 +109,36 @@ FilterAndSearchPage filterAndSearchPage = new FilterAndSearchPage();
 
    //----------------//--------------| 3 | ------------------//-----------
 
+
+    @When("user clicks the Restore default fields and can see the default fields")
+    public void user_clicks_the_restore_default_fields_and_can_see_the_default_fields() {
+
+        filterAndSearchPage.clickHideItem.click();
+        BrowserUtils.waitFor(3);
+        filterAndSearchPage.restoreDefaultFields.click();
+
+    }
+    @When("user clicks Date line")
+    public void user_clicks_date_line() {
+
+        filterAndSearchPage.dateLine.click();
+
+    }
+    @When("click the Any date or different dates")
+    public void click_the_any_date_or_different_dates(List<String> dates) {
+        System.out.println(dates);
+
+        filterAndSearchPage.anyDateClick.click();
+
+    }
+    @Then("the user should be able to select on which day wants to choose")
+    public void the_user_should_be_able_to_select_on_which_day_wants_to_choose() {
+
+        Assert.assertTrue(filterAndSearchPage.anyDateClick.isDisplayed());
+    }
+
+//---------------//---------------| 4 |----------------------//------------------------
+
+
+
 }
