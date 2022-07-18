@@ -1,3 +1,4 @@
+@wipIrfan
 Feature: Creating events, by clicking on Event tab, under Activity Stream
 
 #  #OPC-1006
@@ -97,7 +98,7 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
     And user selects "Central Meeting Room" in the Event location dropdown
     Then user should see the expected Event location "Central Meeting Room"
 
-  @wipIrfan
+
     #  AC4
   Scenario: User should be able to add members by selecting contacts individually or adding groups and departments
     When user clicks Members input box
@@ -115,4 +116,23 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
       | helpdesk11@cybertekschool.com  |
 
 
+
+#  AC5
+
+  Scenario: User should NOT be able to send event without filling the mandatory field - Event name
+    When Event name input box is empty
+    Then Verify that Event Send button is NOT clickable
+
+
+  Scenario: User should be able to send event by filling the mandatory fields
+    When user enters Event name "Cydeo Meeting 1" in the Event name input box
+    And user clicks on the Event Send button
+    Then user should see the created event with name "Cydeo Meeting 1" in the Activity Stream at the current time
+
+
+
+#  AC6
+  Scenario: User should be able to cancel sending event at any time before sending
+    When user clicks Cancel button
+    Then user should be able to see homepage
 
