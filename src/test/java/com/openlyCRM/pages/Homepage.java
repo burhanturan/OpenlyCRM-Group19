@@ -2,10 +2,13 @@ package com.openlyCRM.pages;
 
 
 import com.openlyCRM.utilities.Driver;
+import org.bouncycastle.jcajce.provider.symmetric.AES;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class Homepage extends BasePage{
 
@@ -58,6 +61,28 @@ public class Homepage extends BasePage{
 
     @FindBy(name = "EVENT_REMIND_TYPE")
     public WebElement eventReminderTypeDropdown;
+
+    @FindBy(name = "EVENT_LOCATION")
+    public WebElement eventLocationDropdown;
+
+    @FindBy(xpath = "//div[contains(text(),'Meeting Room')]")
+    public List<WebElement> eventLocationDropdownOptions;
+
+    @FindBy(xpath = "//div[@class='feed-event-destination-wrap']")
+    public WebElement membersInputBox;
+
+    @FindBy(xpath = "//*[text()='Employees and departments']")
+    public WebElement employeesAndDepartments;
+
+    @FindBy(xpath = "//div[contains(text(), 'HR')]")
+    public List<WebElement> HR_Departments;
+
+//    @FindBy(xpath = "//div[contains(@rel, 'HR')]/preceding-sibling::div")
+    @FindBy(xpath = "//div[contains(@rel, 'HR')]")
+    public List<WebElement> allDepartmentsCheckboxesUnderHRs;
+
+    @FindBy(xpath = "//div[@class='bx-finder-company-department-employee-name']")
+    public List<WebElement> contacts;
     // Event page locators
 
 

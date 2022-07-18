@@ -1,4 +1,3 @@
-@wipIrfan
 Feature: Creating events, by clicking on Event tab, under Activity Stream
 
 #  #OPC-1006
@@ -83,4 +82,37 @@ Feature: Creating events, by clicking on Event tab, under Activity Stream
 
     And user selects "minutes" in the event remind type dropdown menu
     Then user should see the "minutes" in the event remind type box
+
+
+
+    #  AC3
+  Scenario: User should be able to select the event location from the dropdown
+    Given User should see select meeting room as placeholder in the Event location dropdown input box
+    When user clicks Event location dropdown
+    Then user should see below info in Event location dropdown
+      | Central Meeting Room |
+      | East Meeting Room    |
+      | West Meeting Room    |
+
+    And user selects "Central Meeting Room" in the Event location dropdown
+    Then user should see the expected Event location "Central Meeting Room"
+
+  @wipIrfan
+    #  AC4
+  Scenario: User should be able to add members by selecting contacts individually or adding groups and departments
+    When user clicks Members input box
+    And user clicks Employees And Departments link
+    And user clicks "HR1" department
+    And user clicks All department and subdepartment employees checkbox under "HR1"
+    And user selects following contacts
+      | marketing54@cybertekschool.com |
+      | hr11@cybertekschool.com        |
+      | helpdesk11@cybertekschool.com  |
+    Then user should see the selected departments and contacts in the Members input box
+      | HR1                            |
+      | marketing54@cybertekschool.com |
+      | hr11@cybertekschool.com        |
+      | helpdesk11@cybertekschool.com  |
+
+
 
