@@ -69,6 +69,8 @@ public class TaskStepDefinitions extends BasePage {
 
     String employee1 = "hr24@cybertekschool.com";
     String employee2 = "helpdesk78@cybertekschool.com";
+    String employee3 ="helpdesk25@cybertekschool.com";
+    String employee4 ="marketing68@cybertekschool.com";
 
 
     @When("user select two more users")
@@ -108,6 +110,56 @@ public class TaskStepDefinitions extends BasePage {
 
         }
 
+    }
+
+    @And("user select four more users")
+    public void userSelectFourMoreUsers() {
+        taskPage.responsibleEmployeesInbox.sendKeys(employee1);
+        taskPage.responsibleEmployeesInbox.sendKeys(Keys.ENTER);
+
+
+        BrowserUtils.waitFor(1);
+
+        WebElement closePopUp = taskPage.seperatedTasksCreatedPopup;
+        if (closePopUp.isEnabled()) {
+            closePopUp.click();
+        }
+        taskPage.responsiblePerson_addMoreButton.click();
+
+        taskPage.responsibleEmployeesInbox.sendKeys(employee2);
+        taskPage.responsibleEmployeesInbox.sendKeys(Keys.ENTER);
+        if (closePopUp.isEnabled()) {
+            closePopUp.click();
+        }
+        taskPage.responsibleEmployeesInbox.sendKeys(employee3);
+        taskPage.responsibleEmployeesInbox.sendKeys(Keys.ENTER);
+
+
+        BrowserUtils.waitFor(1);
+
+
+        if (closePopUp.isEnabled()) {
+            closePopUp.click();
+        }
+        taskPage.responsiblePerson_addMoreButton.click();
+        taskPage.responsibleEmployeesInbox.sendKeys(employee4);
+        taskPage.responsibleEmployeesInbox.sendKeys(Keys.ENTER);
+
+
+        BrowserUtils.waitFor(1);
+
+        if (closePopUp.isEnabled()) {
+            closePopUp.click();
+        }
+        taskPage.responsiblePerson_addMoreButton.click();
+
+
+
+    }
+
+    @Then("user see task is not created")
+    public void userSeeTaskIsNotCreated() {
+        Assert.assertFalse(taskPage.viewTaskPopup.isDisplayed());
     }
 }
 
