@@ -60,8 +60,16 @@ public class TaskPage {
     @FindBy(xpath = "//div[@data-priority='2']")
     public WebElement dataPriority2Element;
 
+    @FindBy(xpath = "//span[@class='task-item-index']")
+    public WebElement counterOngoingTasks;
+
+
     public void goToTaskIframe(){
         Driver.getDriver().switchTo().frame((Driver.getDriver().findElement(By.xpath("//iframe[@class='side-panel-iframe']"))));
+    }
+    public int readCounter(String counter) {
+        counter= counterOngoingTasks.getText();
+        return Integer.valueOf(counter);
     }
 
 

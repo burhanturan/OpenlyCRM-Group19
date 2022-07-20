@@ -10,6 +10,7 @@ Feature: As a user, I should be able to assign tasks under Quick Navigate Menu.
       And user click Send button.
       And user click task created popup
       Then user see task created with high priority
+
       Scenario:
         When user click on Task button
         And user  click on responsible person-add more button
@@ -18,7 +19,7 @@ Feature: As a user, I should be able to assign tasks under Quick Navigate Menu.
         And user click Send button.
         And user click task created popup
         Then user see task is created with two responsible users
-  @jas
+
   Scenario:
     When user click on Task button
     And user  click on responsible person-add more button
@@ -26,5 +27,12 @@ Feature: As a user, I should be able to assign tasks under Quick Navigate Menu.
     And user fill Things To Do inbox
     And user click Send button.
     Then user see task is not created
+  @jas
+  Scenario:
+    When user click on Task button
+    And user read ongoing task counter
+    And user fill Things To Do inbox
+    And user click Send button.
+    Then user see it counted on the My Tasks table
 
 

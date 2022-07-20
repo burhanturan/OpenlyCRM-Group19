@@ -39,6 +39,7 @@ public class TaskStepDefinitions extends BasePage {
     @When("user click Send button.")
     public void user_click_send_button() {
         taskPage.sendButton.click();
+        BrowserUtils.waitFor(3);
 
 
     }
@@ -161,6 +162,25 @@ public class TaskStepDefinitions extends BasePage {
     public void userSeeTaskIsNotCreated() {
         Assert.assertFalse(taskPage.viewTaskPopup.isDisplayed());
     }
+
+    int expectedcounter;
+    @And("user read ongoing task counter")
+    public void userReadOngoingTaskCounter() {
+        System.out.println("taskPage.counterOngoingTasks.getText() = " + taskPage.counterOngoingTasks.getText());
+       expectedcounter=taskPage.readCounter(taskPage.counterOngoingTasks.getText())+1;
+    }
+
+
+    @Then("user see it counted on the My Tasks table")
+    public void userSeeItCountedOnTheMyTasksTable() {
+
+        int lastCounterInt= taskPage.readCounter(taskPage.counterOngoingTasks.getText());
+        Assert.assertEquals(expectedcounter,lastCounterInt);
+
+
+    }
+
+
 }
 
 
