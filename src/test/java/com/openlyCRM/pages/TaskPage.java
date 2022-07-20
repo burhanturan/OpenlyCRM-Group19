@@ -63,6 +63,32 @@ public class TaskPage {
     @FindBy(xpath = "//span[@class='task-item-index']")
     public WebElement counterOngoingTasks;
 
+    @FindBy(xpath = "//span[.='Checklist']")
+    public WebElement checklistButton;
+
+    @FindBy(xpath = "//input[@class='js-id-checklist-is-form-title task-checklist-field-add']")
+    public WebElement checklistInbox;
+
+    @FindBy(xpath = "//span[@class='js-id-checklist-is-form-submit block-edit tasks-btn-apply task-field-title-ok']")
+    public WebElement checklistThick;
+
+    @FindBy(xpath = "//div[@class='js-id-checklist-is-items js-id-checklist-items-ongoing tasks-checklist-dropzone']/div")
+    public List<WebElement> checklistDuties;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void goToTaskIframe(){
         Driver.getDriver().switchTo().frame((Driver.getDriver().findElement(By.xpath("//iframe[@class='side-panel-iframe']"))));

@@ -176,11 +176,52 @@ public class TaskStepDefinitions extends BasePage {
 
         int lastCounterInt= taskPage.readCounter(taskPage.counterOngoingTasks.getText());
         Assert.assertEquals(expectedcounter,lastCounterInt);
-
-
     }
 
 
+    @And("user click checklist button")
+    public void userClickChecklistButton() {
+        taskPage.checklistButton.click();
+
+    }
+
+    String duty1 ="finish the project";
+    String duty2 ="do review";
+
+
+    @And("user fill inbox and click tick")
+    public void userFillInboxAndClickTick() {
+        taskPage.checklistInbox.sendKeys(duty1);
+        taskPage.checklistThick.click();
+        taskPage.checklistInbox.sendKeys(duty2);
+        taskPage.checklistThick.click();
+    }
+
+    @Then("user see task created with checklist items")
+    public void userSeeTaskCreatedWithChecklistItems() {
+        taskPage.goToTaskIframe();
+        for (int i = 1; i < taskPage.checklistDuties.size(); i++) {
+
+            System.out.println("taskPage.checklistDuties.get(i).getText() = " + taskPage.checklistDuties.get(i).getText());
+
+
+            if (taskPage.checklistDuties.get(i).getText().contains(duty1) ||taskPage.checklistDuties.get(i).getText().contains(duty2)){
+                Assert.assertTrue(true);
+            }else {
+                Assert.fail();
+            }
+
+        }
+
+
+      /*  for (WebElement eachDuty : taskPage.checklistDuties) {
+            System.out.println("eachDuty.getText() = " + eachDuty.getText());
+
+
+        }*/
+
+
+    }
 }
 
 
