@@ -87,6 +87,24 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
 
     //---------------------------- | 4 |---------------------------------
 
+        @FindBy(xpath = "//div[@class='main-ui-control main-ui-multi-select']")
+        public WebElement clickTypeLine;
+
+        @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[1]")
+    public WebElement postsType;
+
+        @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[2]")
+    public WebElement announcementsType;
+
+        @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[3]")
+    public WebElement appreciationsType;
+
+        @FindBy(xpath = "//span[@class='main-ui-item-icon main-ui-search']")
+    public WebElement clickSearchButton;
+
+        //--------------------------| 5 |-------------------------
+
+
 
 
 

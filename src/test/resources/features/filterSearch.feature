@@ -29,7 +29,7 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
         | Extranet  |
       Then user should be able to add and remove fields
 
-  @byz
+
   Scenario: User should be able to search by specifying the Date
     When user clicks the Restore default fields and can see the default fields
     And user clicks Date line
@@ -54,3 +54,9 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       | Custom range    |
     Then the user should be able to select on which day wants to choose
 
+  @byz
+    Scenario: User should be able to search by selecting single or multiple types
+      When user clicks the Type line
+      And user can add more then one Types
+      And user click the search button
+      Then user can see the added types on the homepage
