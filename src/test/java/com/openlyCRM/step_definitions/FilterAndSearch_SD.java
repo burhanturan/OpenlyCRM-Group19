@@ -140,5 +140,31 @@ FilterAndSearchPage filterAndSearchPage = new FilterAndSearchPage();
 //---------------//---------------| 4 |----------------------//------------------------
 
 
+    @When("user clicks the Type line")
+    public void user_clicks_the_type_line() {
+    filterAndSearchPage.clickTypeLine.click();
+    }
+    @When("user can add more then one Types")
+    public void user_can_add_more_then_one_types() {
+filterAndSearchPage.postsType.click();
+filterAndSearchPage.announcementsType.click();
+filterAndSearchPage.appreciationsType.click();
+    }
+    @When("user click the search button")
+    public void user_click_the_search_button() {
+        BrowserUtils.waitFor(3);
+filterAndSearchPage.clickSearchButton.click();
+    }
+    @Then("user can see the added types on the homepage")
+    public void user_can_see_the_added_types_on_the_homepage() {
+Assert.assertTrue(filterAndSearchPage.clickSearchButton.isDisplayed());
+    }
+
+    //--------------------------| 5 |------------------------------##
+
+
+
+
+
 
 }
