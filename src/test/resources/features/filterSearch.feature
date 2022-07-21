@@ -69,3 +69,4 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       Examples:
         | Filter Name |
         | Services    |
+
