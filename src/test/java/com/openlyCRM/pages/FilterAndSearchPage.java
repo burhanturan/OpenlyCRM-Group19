@@ -104,6 +104,17 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
 
         //--------------------------| 5 |-------------------------
 
+    @FindBy(xpath = "//span[@class='main-ui-filter-add-item']")
+    public WebElement saveFilter;
+
+    @FindBy(xpath = "//span[@class='ui-btn ui-btn-success main-ui-filter-field-button main-ui-filter-save']")
+    public WebElement saveButton;
+
+    @FindBy(xpath = "//input[@class='main-ui-filter-sidebar-edit-control']")
+    public WebElement giveFilterName;
+
+    @FindBy(xpath = "(//span[@class='main-ui-filter-sidebar-item-text'])[8]")
+    public WebElement servicesFilterName;
 
 
 

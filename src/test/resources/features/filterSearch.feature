@@ -54,9 +54,19 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       | Custom range    |
     Then the user should be able to select on which day wants to choose
 
-  @byz
+
     Scenario: User should be able to search by selecting single or multiple types
       When user clicks the Type line
       And user can add more then one Types
       And user click the search button
       Then user can see the added types on the homepage
+  @byz
+    Scenario Outline: User should be able to save the filter.
+      When user click the SAVE FILTER button
+      And give any filter name inside "<Filter Name>"
+      And user click the save button.
+      Then user can see the saved filter under filters table
+      Examples:
+        | Filter Name |
+        | Services    |
+
