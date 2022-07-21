@@ -184,6 +184,36 @@ Assert.assertTrue(filterAndSearchPage.clickSearchButton.isDisplayed());
     //---------------------| 6 |----------------------
 
 
+    @When("user clicks the add field button")
+    public void user_clicks_the_add_field_button() {
+        filterAndSearchPage.addFieldsAc6.click();
+    }
+    @When("user add some fields")
+    public void user_add_some_fields(List<String > favoritesFields ) {
+
+        System.out.println(favoritesFields);
+BrowserUtils.waitFor(2);
+filterAndSearchPage.favoritesField.click();
+        BrowserUtils.waitFor(2);
+filterAndSearchPage.tagField.click();
+        BrowserUtils.waitFor(2);
+filterAndSearchPage.extranetField.click();
+
+
+    }
+    @When("user clicks the Restore default fields button")
+    public void user_clicks_the_restore_default_fields_button() {
+        BrowserUtils.waitFor(3);
+        filterAndSearchPage.restoreFieldAc6.click();
+    }
+    @Then("user should be able to see default page")
+    public void user_should_be_able_to_see_default_page() {
+        Assert.assertTrue(filterAndSearchPage.restoreFieldAc6.isDisplayed());
+    }
+
+    //------------------------| 7 |-------------------------
+
+
 
 
 

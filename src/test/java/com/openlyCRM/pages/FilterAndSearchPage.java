@@ -116,6 +116,24 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
     @FindBy(xpath = "(//span[@class='main-ui-filter-sidebar-item-text'])[8]")
     public WebElement servicesFilterName;
 
+    //--------------------------| 6 |-------------------------
+
+    @FindBy(xpath = "//span[@class='main-ui-filter-field-add-item']")
+    public WebElement addFieldsAc6;
+
+    @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[5]")
+    public WebElement favoritesField;
+
+    @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[6]")
+    public WebElement tagField;
+
+    @FindBy(xpath = "(//div[@class='main-ui-select-inner-label'])[7]")
+    public WebElement extranetField;
+
+    @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
+    public WebElement restoreFieldAc6;
+
+
 
 
 
