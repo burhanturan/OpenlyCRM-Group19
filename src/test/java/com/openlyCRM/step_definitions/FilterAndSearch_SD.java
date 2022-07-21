@@ -163,6 +163,26 @@ Assert.assertTrue(filterAndSearchPage.clickSearchButton.isDisplayed());
     //--------------------------| 5 |------------------------------##
 
 
+    @When("user click the SAVE FILTER button")
+    public void user_click_the_save_filter_button() {
+       filterAndSearchPage.saveFilter.click();
+    }
+    @When("give any filter name inside {string}")
+    public void give_any_filter_name_inside(String services) {
+        filterAndSearchPage.giveFilterName.sendKeys(services);
+
+    }
+    @When("user click the save button.")
+    public void user_click_the_save_button() {
+        filterAndSearchPage.saveButton.click();
+    }
+    @Then("user can see the saved filter under filters table")
+    public void user_can_see_the_saved_filter_under_filters_table() {
+        Assert.assertTrue(filterAndSearchPage.servicesFilterName.isDisplayed());
+    }
+
+    //---------------------| 6 |----------------------
+
 
 
 
