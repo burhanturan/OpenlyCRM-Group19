@@ -1,21 +1,16 @@
 package com.openlyCRM.step_definitions;
 
 import com.openlyCRM.pages.BasePage;
-import com.openlyCRM.pages.LoginPage;
 import com.openlyCRM.pages.TaskPage;
 import com.openlyCRM.utilities.BrowserUtils;
-import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
+//Yasemin
 public class TaskStepDefinitions extends BasePage {
 
     TaskPage taskPage = new TaskPage();
@@ -213,16 +208,92 @@ public class TaskStepDefinitions extends BasePage {
 
         }
 
+    }
+    @When("user click Deadline inbox")
+    public void user_click_deadline_inbox() {
+       taskPage.deadlineInbox.click();
 
-      /*  for (WebElement eachDuty : taskPage.checklistDuties) {
-            System.out.println("eachDuty.getText() = " + eachDuty.getText());
+    }
 
 
-        }*/
+    @And("user select {string}, {string}, {string}, {string}, {string} and {string}")
+    public void userSelectAnd(String month, String year, String day, String hour, String minute, String am_pm) {
+
+        BrowserUtils.waitFor(2);
+        taskPage.monthDropdown.click();
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineMonth(month).click();
+
+        BrowserUtils.waitFor(2);
+        taskPage.yearDropdown.click();
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineYear(year).click();
+
+        BrowserUtils.waitFor(2);
+
+        taskPage.deadlineDay(day).click();
+        BrowserUtils.waitFor(2);
+        //Actions actions = new Actions(Driver.getDriver());
+       // actions.doubleClick(taskPage.deadlineHourInbox).perform();
+        taskPage.deadlineHourInbox.sendKeys(Keys.BACK_SPACE);
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineHourInbox.sendKeys(hour);
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineMinuteInbox.sendKeys(minute);
+        BrowserUtils.waitFor(2);
+        if(taskPage.deadline_Am_Pm.getText().equals("PM") && am_pm.equals("AM")){
+            taskPage.deadline_Am_Pm_ArrowDown.click();
+        }else if(taskPage.deadline_Am_Pm.getText().equals("AM") && am_pm.equals("PM")){
+            taskPage.deadline_Am_Pm_ArrowUp.click();
+        }
+
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineSelectButton.click();
+        BrowserUtils.waitFor(2);
 
 
     }
+
+    @Then("user see the selected deadline as {string}")
+    public void userSeeTheSelectedDeadlineAs(String date_time) {
+        taskPage.goToTaskIframe();
+        Assert.assertEquals( date_time, taskPage.actualDeadline.getText());
+
+    }
+
+    @Then("user see task is overdue message")
+    public void userSeeTaskIsOverdueMessage() {
+        taskPage.goToTaskIframe();
+        taskPage.taskIsOverdueMessage.isDisplayed();
+    }
+
+    @When("user click Time planning button")
+    public void user_click_time_planning_button() {
+       taskPage.timePlanningButton.click();
+    }
+
+    @When("user fill Start task on inbox")
+    public void user_fill_start_task_on_inbox() {
+        taskPage.startTaskOnInbox.click();
+    }
+    
+    String duration="10";
+    @When("user fill Duration inbox")
+    public void user_fill_duration_inbox() {
+        taskPage.durationInbox.sendKeys(duration);
+        BrowserUtils.waitFor(2);
+
+
+    }
+
+
+    @Then("user see the selected {string} and {string}")
+    public void userSeeTheSelectedAnd(String startDate, String endDate) {
+        taskPage.goToTaskIframe();
+
+        Assert.assertEquals(startDate, taskPage.actualStartDate.getText());
+        Assert.assertEquals(endDate, taskPage.actualEndDate.getText());
+    }
+
+
 }
-
-
-
