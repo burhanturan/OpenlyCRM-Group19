@@ -75,9 +75,77 @@ public class TaskPage {
     @FindBy(xpath = "//div[@class='js-id-checklist-is-items js-id-checklist-items-ongoing tasks-checklist-dropzone']/div")
     public List<WebElement> checklistDuties;
 
+    @FindBy(xpath = "(//input[@class='task-options-inp'])[1]")
+    public WebElement deadlineInbox;
+
+    @FindBy(xpath = "//a[@class='bx-calendar-top-month']")
+    public WebElement monthDropdown;
+
+    @FindBy(xpath = "//a[@class='bx-calendar-top-year']")
+    public WebElement yearDropdown;
+
+
+    public WebElement deadlineMonth(String month){
+        String locator="//div[@class='bx-calendar-month-content']//span[.='"+month+"']";
+        return Driver.getDriver().findElement(By.xpath(locator));
+
+    }
+
+
+    public WebElement deadlineYear(String year){
+        String locator="//div[@class='bx-calendar-year-content']/span[.='"+year+"']";
+        return Driver.getDriver().findElement(By.xpath(locator));
+
+    }
 
 
 
+    public WebElement deadlineDay(String day){
+        String locator="//div[@class='bx-calendar-layer']/div//a[.='"+day+"']";
+        return Driver.getDriver().findElement(By.xpath(locator));
+
+    }
+
+
+
+    @FindBy(xpath = "//div[@class='bx-calendar-layer']/div")
+    public WebElement dayDropdown;
+
+    @FindBy(xpath = "(//input[@class='bx-calendar-form-input'])[1]")
+    public WebElement deadlineHourInbox;
+
+    @FindBy(xpath = "(//input[@class='bx-calendar-form-input'])[2]")
+    public WebElement deadlineMinuteInbox;
+
+    @FindBy(xpath = "//span[@class='bx-calendar-AM-PM-text']")
+    public WebElement deadline_Am_Pm;
+
+    @FindBy(xpath = "//a[@class='bx-calendar-form-arrow-bottom']")
+    public WebElement deadline_Am_Pm_Arrow;
+
+    @FindBy(xpath = "(//span[@class='bx-calendar-button-text'])[1]")
+    public WebElement deadlineSelectButton;
+
+    @FindBy(xpath = "(//span[@class='menu-item-link-text'])[2]")
+    public WebElement taskPage;
+
+    @FindBy(xpath = "//span[@id='task-detail-deadline']")
+    public WebElement actualDeadline;
+
+    @FindBy(xpath = "//span[.='Time planning']")
+    public WebElement timePlanningButton;
+
+    @FindBy(xpath = "(//input[@class='task-options-inp'])[2]")
+    public WebElement startTaskOnInbox;
+
+    @FindBy(xpath = "(//input[@class='task-options-inp'])[3]")
+    public WebElement durationInbox;
+
+    @FindBy(xpath = "//div[@id=\"tasks-content-outer\"]/div[1]/div/div/div[6]/div[2]")
+    public WebElement actualStartDate;
+
+    @FindBy(xpath = "//div[@id=\"tasks-content-outer\"]/div[1]/div/div/div[7]/div[2]")
+    public WebElement actualEndDate;
 
 
 
@@ -95,7 +163,7 @@ public class TaskPage {
     }
     public int readCounter(String counter) {
         counter= counterOngoingTasks.getText();
-        return Integer.valueOf(counter);
+        return Integer.parseInt(counter);
     }
 
 

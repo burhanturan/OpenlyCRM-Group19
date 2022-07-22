@@ -13,7 +13,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 
 public class TaskStepDefinitions extends BasePage {
@@ -213,16 +219,122 @@ public class TaskStepDefinitions extends BasePage {
 
         }
 
+    }
+    @When("user click Deadline inbox")
+    public void user_click_deadline_inbox() {
+       taskPage.deadlineInbox.click();
 
-      /*  for (WebElement eachDuty : taskPage.checklistDuties) {
-            System.out.println("eachDuty.getText() = " + eachDuty.getText());
+    }
+ /*   @Then("should be able to select Deadline and clicks the select button")
+    public void should_be_able_to_select_deadline_and_clicks_the_select_button() {
+        activeStreamPage.july4.click();
+        WebElement deadlineBox = Driver.getDriver().findElement(By.xpath("(//input[@class='task-options-inp'])[1]"));
+        BrowserUtils.sleep(2);
+        activeStreamPage.selectBtnDeadline.click();
+        Assert.assertTrue(deadlineBox.isDisplayed());
+//div[@class='bx-calendar-cell-block']/
+    }*/
 
+    @And("user select {string}, {string}, {string}, {string}, {string} and {string}")
+    public void userSelectAnd(String month, String year, String day, String hour, String minute, String am_pm) {
 
-        }*/
+        BrowserUtils.waitFor(2);
+        taskPage.monthDropdown.click();
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineMonth(month).click();
+
+        BrowserUtils.waitFor(2);
+        taskPage.yearDropdown.click();
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineYear(year).click();
+
+        BrowserUtils.waitFor(2);
+
+        taskPage.deadlineDay(day).click();
+        BrowserUtils.waitFor(2);
+        //Actions actions = new Actions(Driver.getDriver());
+       // actions.doubleClick(taskPage.deadlineHourInbox).perform();
+        taskPage.deadlineHourInbox.sendKeys(Keys.BACK_SPACE);
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineHourInbox.sendKeys(hour);
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineMinuteInbox.sendKeys(minute);
+        BrowserUtils.waitFor(2);
+        if(!taskPage.deadline_Am_Pm.getText().equals(am_pm)){
+            taskPage.deadline_Am_Pm_Arrow.click();
+        }
+
+        BrowserUtils.waitFor(2);
+        taskPage.deadlineSelectButton.click();
 
 
     }
+
+    @Then("user see the selected deadline as {string}")
+    public void userSeeTheSelectedDeadlineAs(String date_time) {
+        taskPage.goToTaskIframe();
+        Assert.assertEquals( date_time, taskPage.actualDeadline.getText());
+
+    }
+
+    @When("user click Time planning button")
+    public void user_click_time_planning_button() {
+       taskPage.timePlanningButton.click();
+    }
+
+    @When("user fill Start task on inbox")
+    public void user_fill_start_task_on_inbox() {
+        taskPage.startTaskOnInbox.click();
+    }
+    
+    String duration="10";
+    @When("user fill Duration inbox")
+    public void user_fill_duration_inbox() {
+        taskPage.durationInbox.sendKeys(duration);
+        BrowserUtils.waitFor(2);
+
+
+    }
+
+  /*  @Then("user see the selected {string} and endDate")
+    public void userSeeTheSelectedAndEndDate(String startDate) {
+        int durationInt = Integer.parseInt(duration);
+        LocalDate startDate = ;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String currentDate = date.format(formatter);
+        LocalDate endDate = LocalDate.now().plusDays(durationInt);
+        String tomorrowDate = tomorrow.format(formatter);
+
+    }*/
+
+
+    @Then("user see the selected {string} and {string}")
+    public void userSeeTheSelectedAnd(String startDate, String endDate) {
+        taskPage.goToTaskIframe();
+
+        Assert.assertEquals(startDate, taskPage.actualStartDate.getText());
+        Assert.assertEquals(endDate, taskPage.actualEndDate.getText());
+    }
 }
 
+/*
 
+import java.time.LocalDate;
+LocalDate date = LocalDate.now();
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    String currentDate = date.format(dateFormatter);
+
+    import java.time.LocalDate;
+LocalDate date = LocalDate.now();
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    String currentDate = date.format(dateFormatter);
+
+    LocalDate tomorrow = LocalDate.now().plusDays(1);
+    String tomorrowDate = tomorrow.format(dateFormatter);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+String expectedDate = sdf.format(Calendar.getInstance().getTime());
+System.out.println("expectedDate = " + expectedDate);
+
+ */
 
