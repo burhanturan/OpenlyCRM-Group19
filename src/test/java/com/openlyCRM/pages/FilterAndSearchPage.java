@@ -133,6 +133,12 @@ public FilterAndSearchPage(){PageFactory.initElements(Driver.getDriver(),this);}
     @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
     public WebElement restoreFieldAc6;
 
+    //----------------------------| 7 |----------------------------
+
+    @FindBy(xpath = "//span[@class='ui-btn ui-btn-light-border main-ui-filter-field-button main-ui-filter-reset']")
+    public WebElement resetButton;
+
+
 
 
 
