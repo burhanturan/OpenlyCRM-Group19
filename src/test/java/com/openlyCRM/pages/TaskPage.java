@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.swing.*;
 import java.util.List;
-
+//Yasemin
 public class TaskPage {
     public TaskPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -121,13 +121,16 @@ public class TaskPage {
     public WebElement deadline_Am_Pm;
 
     @FindBy(xpath = "//a[@class='bx-calendar-form-arrow-bottom']")
-    public WebElement deadline_Am_Pm_Arrow;
+    public WebElement deadline_Am_Pm_ArrowDown;
+
+    @FindBy(xpath = "//a[@class='bx-calendar-form-arrow-top']")
+    public WebElement deadline_Am_Pm_ArrowUp;
 
     @FindBy(xpath = "(//span[@class='bx-calendar-button-text'])[1]")
     public WebElement deadlineSelectButton;
 
-    @FindBy(xpath = "(//span[@class='menu-item-link-text'])[2]")
-    public WebElement taskPage;
+    @FindBy(xpath = "//span[.='Task is overdue!']")
+    public WebElement taskIsOverdueMessage;
 
     @FindBy(xpath = "//span[@id='task-detail-deadline']")
     public WebElement actualDeadline;

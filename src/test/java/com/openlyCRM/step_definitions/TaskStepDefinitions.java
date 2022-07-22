@@ -1,27 +1,16 @@
 package com.openlyCRM.step_definitions;
 
 import com.openlyCRM.pages.BasePage;
-import com.openlyCRM.pages.LoginPage;
 import com.openlyCRM.pages.TaskPage;
 import com.openlyCRM.utilities.BrowserUtils;
-import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.List;
-
+//Yasemin
 public class TaskStepDefinitions extends BasePage {
 
     TaskPage taskPage = new TaskPage();
@@ -225,15 +214,7 @@ public class TaskStepDefinitions extends BasePage {
        taskPage.deadlineInbox.click();
 
     }
- /*   @Then("should be able to select Deadline and clicks the select button")
-    public void should_be_able_to_select_deadline_and_clicks_the_select_button() {
-        activeStreamPage.july4.click();
-        WebElement deadlineBox = Driver.getDriver().findElement(By.xpath("(//input[@class='task-options-inp'])[1]"));
-        BrowserUtils.sleep(2);
-        activeStreamPage.selectBtnDeadline.click();
-        Assert.assertTrue(deadlineBox.isDisplayed());
-//div[@class='bx-calendar-cell-block']/
-    }*/
+
 
     @And("user select {string}, {string}, {string}, {string}, {string} and {string}")
     public void userSelectAnd(String month, String year, String day, String hour, String minute, String am_pm) {
@@ -260,12 +241,15 @@ public class TaskStepDefinitions extends BasePage {
         BrowserUtils.waitFor(2);
         taskPage.deadlineMinuteInbox.sendKeys(minute);
         BrowserUtils.waitFor(2);
-        if(!taskPage.deadline_Am_Pm.getText().equals(am_pm)){
-            taskPage.deadline_Am_Pm_Arrow.click();
+        if(taskPage.deadline_Am_Pm.getText().equals("PM") && am_pm.equals("AM")){
+            taskPage.deadline_Am_Pm_ArrowDown.click();
+        }else if(taskPage.deadline_Am_Pm.getText().equals("AM") && am_pm.equals("PM")){
+            taskPage.deadline_Am_Pm_ArrowUp.click();
         }
 
         BrowserUtils.waitFor(2);
         taskPage.deadlineSelectButton.click();
+        BrowserUtils.waitFor(2);
 
 
     }
@@ -275,6 +259,12 @@ public class TaskStepDefinitions extends BasePage {
         taskPage.goToTaskIframe();
         Assert.assertEquals( date_time, taskPage.actualDeadline.getText());
 
+    }
+
+    @Then("user see task is overdue message")
+    public void userSeeTaskIsOverdueMessage() {
+        taskPage.goToTaskIframe();
+        taskPage.taskIsOverdueMessage.isDisplayed();
     }
 
     @When("user click Time planning button")
@@ -296,17 +286,6 @@ public class TaskStepDefinitions extends BasePage {
 
     }
 
-  /*  @Then("user see the selected {string} and endDate")
-    public void userSeeTheSelectedAndEndDate(String startDate) {
-        int durationInt = Integer.parseInt(duration);
-        LocalDate startDate = ;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String currentDate = date.format(formatter);
-        LocalDate endDate = LocalDate.now().plusDays(durationInt);
-        String tomorrowDate = tomorrow.format(formatter);
-
-    }*/
-
 
     @Then("user see the selected {string} and {string}")
     public void userSeeTheSelectedAnd(String startDate, String endDate) {
@@ -315,26 +294,6 @@ public class TaskStepDefinitions extends BasePage {
         Assert.assertEquals(startDate, taskPage.actualStartDate.getText());
         Assert.assertEquals(endDate, taskPage.actualEndDate.getText());
     }
+
+
 }
-
-/*
-
-import java.time.LocalDate;
-LocalDate date = LocalDate.now();
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    String currentDate = date.format(dateFormatter);
-
-    import java.time.LocalDate;
-LocalDate date = LocalDate.now();
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    String currentDate = date.format(dateFormatter);
-
-    LocalDate tomorrow = LocalDate.now().plusDays(1);
-    String tomorrowDate = tomorrow.format(dateFormatter);
-
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-String expectedDate = sdf.format(Calendar.getInstance().getTime());
-System.out.println("expectedDate = " + expectedDate);
-
- */
-
