@@ -213,6 +213,42 @@ filterAndSearchPage.extranetField.click();
 
     //------------------------| 7 |-------------------------
 
+    @When("user add some Types")
+    public void user_add_some_types(List<String> types) {
+
+        filterAndSearchPage.clickTypeLine.click();
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.appreciationsType.click();
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.announcementsType.click();
+        System.out.println(types);
+    }
+    @When("user clicks send button.")
+    public void user_clicks_send_button() {
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.clickSearchButton.click();
+    }
+    @When("user clicks filter and search line")
+    public void user_clicks_filter_and_search_line() {
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.filterAndSearchButton.click();
+    }
+    @When("user clicks the Reset button")
+    public void user_clicks_the_reset_button() {
+        BrowserUtils.waitFor(2);
+filterAndSearchPage.resetButton.click();
+    }
+    @When("user clicks filter and search line again")
+    public void user_clicks_filter_and_search_line_again() {
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.filterAndSearchButton.click();
+    }
+    @Then("user can see the default page.")
+    public void user_can_see_the_default_page() {
+if (filterAndSearchPage.filterAndSearchButton.getText()=="text"){
+    Assert.assertTrue(true);
+}
+    }
 
 
 

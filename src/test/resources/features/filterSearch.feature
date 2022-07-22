@@ -69,7 +69,7 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       Examples:
         | Filter Name |
         | Services    |
-  @byz
+
     Scenario: User should be able to restore the default field
       When user clicks the add field button
       And user add some fields
@@ -78,5 +78,22 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
         | Extranet  |
       And user clicks the Restore default fields button
       Then user should be able to see default page
+
+
+@byz
+    Scenario: User should be able to reset filters to default.
+      When user add some Types
+        | Appreciations |
+        | Announcements |
+  And user clicks send button.
+      And user clicks filter and search line
+      And user clicks the Reset button
+      And user clicks filter and search line again
+      Then user can see the default page.
+
+
+
+
+
 
 
