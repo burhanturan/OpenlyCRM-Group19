@@ -60,7 +60,7 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       And user can add more then one Types
       And user click the search button
       Then user can see the added types on the homepage
-  @byz
+
     Scenario Outline: User should be able to save the filter.
       When user click the SAVE FILTER button
       And give any filter name inside "<Filter Name>"
@@ -69,4 +69,14 @@ Feature: As a user, I should be able to use "Filter and search" functionality on
       Examples:
         | Filter Name |
         | Services    |
+  @byz
+    Scenario: User should be able to restore the default field
+      When user clicks the add field button
+      And user add some fields
+        | Favorites |
+        | Tag       |
+        | Extranet  |
+      And user clicks the Restore default fields button
+      Then user should be able to see default page
+
 
